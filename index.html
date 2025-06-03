@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>JohnApp Online</title>
+  <style>
+    body {
+      background-color: #0d0d0d;
+      color: #eeeeee;
+      font-family: Arial, sans-serif;
+      text-align: center;
+      padding: 20px;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+    }
+
+    textarea {
+      width: 80%;
+      height: 150px;
+      font-size: 16px;
+      padding: 10px;
+      border-radius: 8px;
+      border: none;
+      resize: none;
+      background-color: #1a1a1a;
+      color: #ffffff;
+    }
+
+    .button-row {
+      margin: 15px;
+    }
+
+    button {
+      background-color: #4444ff;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      margin: 0 10px;
+      border-radius: 8px;
+      font-size: 16px;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #2222aa;
+    }
+
+    #status {
+      margin-top: 15px;
+      font-size: 14px;
+      color: limegreen;
+    }
+  </style>
+</head>
+<body>
+  <h1>Welcome to JohnApp Online</h1>
+
+  <textarea id="noteArea" placeholder="Type your note here..."></textarea><br>
+
+  <div class="button-row">
+    <button onclick="saveNote()">💾 Save</button>
+    <button onclick="loadNote()">📂 Load</button>
+  </div>
+
+  <p id="status"></p>
+
+  <script>
+    function saveNote() {
+      const note = document.getElementById("noteArea").value;
+      localStorage.setItem("johnapp_note", note);
+      document.getElementById("status").innerText = "Note saved!";
+    }
+
+    function loadNote() {
+      const note = localStorage.getItem("johnapp_note");
+      const area = document.getElementById("noteArea");
+      const status = document.getElementById("status");
+
+      if (note) {
+        area.value = note;
+        status.innerText = "Note loaded!";
+      } else {
+        status.innerText = "No saved note found.";
+      }
+    }
+  </script>
+</body>
+</html>
